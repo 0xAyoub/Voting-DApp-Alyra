@@ -1,7 +1,7 @@
 import { Flex, Heading, Textarea, Input, Text, Button, useToast, Box, Grid, Divider, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer } from '@chakra-ui/react'
 import { useAccount, useProvider, useSigner, useBalance  } from 'wagmi'
 import { useState, useEffect } from 'react'
-import Contract from 'Voting.json'
+import Contract from '../Voting.json'
 import { ethers } from 'ethers'
 
 export const Voting = () => {

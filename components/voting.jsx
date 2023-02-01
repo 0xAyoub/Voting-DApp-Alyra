@@ -33,20 +33,20 @@ export const Voting = () => {
         const contract = new ethers.Contract(contractAddress, Contract.abi, provider)
         let filter = {
             address: contractAddress,
-            fromBlock: lastBlock
+            fromBlock: 0
         }
 
         let events = await contract.queryFilter(filter)
         console.log(contractAddress)
 
         let proposalsIdArray = []
-        
-        for (const event of events) {
+
+        events.forEach(event => {
             if(event.event === "ProposalRegistered"){
                 // event.args => Id des proposals
                 proposalsIdArray.push(event.args)
             }
-        }
+        })
         getProposalsIdState(proposalsIdArray)
 
     }

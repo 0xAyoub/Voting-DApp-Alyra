@@ -33,7 +33,7 @@ export const Voting = () => {
 
         let filter = {
             address: contractAddress,
-            fromBlock: 0,
+            fromBlock: 44,
         }
 
         let events = await contract.queryFilter(filter)

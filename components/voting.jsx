@@ -177,6 +177,28 @@ export const Voting = () => {
     }
     
 
+    const startVotersRegistering = async () => {
+        try {
+            const contract = new ethers.Contract(contractAddress, Contract.abi, signer)
+            let add = await contract.startVotersRegistering()
+            await add.wait()
+            toast({
+                title: 'Success!',
+                description: "Proposal registering session have started.",
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+            })
+
+        } catch (e) {
+            toast({
+                title: 'Error!',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            })
+        }
+    }
     const startRegisteringSession = async () => {
         try {
             const contract = new ethers.Contract(contractAddress, Contract.abi, signer)
@@ -274,6 +296,7 @@ export const Voting = () => {
             <Flex justifyContent='space-evenly' borderRadius="10px" padding="20px" borderColor="grey" borderWidth="1px" marginTop="80px" marginLeft="20px" marginRight="20px" marginBottom="80px" display="block">
                 <Text fontSize="20px" fontWeight="700">ADMIN</Text>
                 <Flex justifyContent="space-between">
+                    <Button colorScheme="green" onClick={() => startVotersRegistering()}>Start Voting Session</Button>
                     <Button colorScheme="blue" onClick={() => startRegisteringSession()}>Start Proposals Session</Button>
                     <Button colorScheme="red" onClick={() => endRegisteringSession()}>Stop Proposals Session</Button>
                     <Button colorScheme="blue" onClick={() => startVotingSession()}>Start Voting Session</Button>

@@ -34,6 +34,7 @@ export const Voting = () => {
         let filter = {
             address: contractAddress,
             fromBlock: lastBlock,
+            toBlock: lastBlock+250
         }
 
         let events = await contract.queryFilter(filter)

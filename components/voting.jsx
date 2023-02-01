@@ -10,7 +10,6 @@ export const Voting = () => {
     const provider = useProvider() 
     const { data: signer } = useSigner()
     const contractAddress = process.env.NEXT_PUBLIC_SCADDRESS
-    const lastBlock = process.env.NEXT_PUBLIC_BLOCK
     const toast = useToast()
 
     useEffect(() => {
@@ -33,7 +32,8 @@ export const Voting = () => {
         const contract = new ethers.Contract(contractAddress, Contract.abi, provider)
         let filter = {
             address: contractAddress,
-            fromBlock: lastBlock
+            fromBlock: process.env.NEXT_PUBLIC_BLOCK
+
         }
 
         let events = await contract.queryFilter(filter)

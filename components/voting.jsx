@@ -33,7 +33,7 @@ export const Voting = () => {
         const contract = new ethers.Contract(contractAddress, Contract.abi, provider)
         let filter = {
             address: contractAddress,
-            fromBlock: 0
+            fromBlock: lastBlock
         }
 
         let events = await contract.queryFilter(filter)
